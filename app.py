@@ -13,14 +13,22 @@ st.set_page_config(
 # Estilos personalizados premium con Glassmorphism y Gradientes
 st.markdown("""
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
     
-    /* Configuración de fuentes y fondo general */
-    html, body, [class*="css"] {
-        font-family: 'Plus Jakarta Sans', sans-serif;
+    /* Ocultar la barra superior por completo */
+    [data-testid="stHeader"] {
+        display: none !important;
     }
     
-    [data-testid="stAppViewContainer"] {
+    /* Ajustar espaciado superior al remover la barra */
+    [data-testid="stMainBlockContainer"] {
+        padding-top: 2.5rem !important;
+        padding-bottom: 2rem !important;
+    }
+    
+    /* Configuración de fuentes y fondo general */
+    html, body, [data-testid="stAppViewContainer"] {
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
         background: radial-gradient(circle at 50% 50%, #0f172a 0%, #020617 100%);
         color: #f1f5f9;
     }
@@ -30,9 +38,16 @@ st.markdown("""
         border-right: 1px solid #1e293b;
     }
     
-    /* Títulos y encabezados con efecto de brillo */
+    /* Resaltar títulos y encabezados */
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
+        font-weight: 700 !important;
+        letter-spacing: -0.02em !important;
+    }
+    
+    /* Título Principal */
     .glow-title {
-        font-size: 3rem;
+        font-size: 3.5rem;
         font-weight: 800;
         background: linear-gradient(135deg, #38bdf8 0%, #a855f7 50%, #ec4899 100%);
         -webkit-background-clip: text;
@@ -40,15 +55,70 @@ st.markdown("""
         text-align: center;
         padding-top: 10px;
         margin-bottom: 5px;
-        text-shadow: 0 0 40px rgba(168, 85, 247, 0.25);
+        text-shadow: 0 0 40px rgba(168, 85, 247, 0.3);
     }
     
     .glow-subtitle {
-        font-size: 1.25rem;
+        font-size: 1.3rem;
         color: #94a3b8;
         text-align: center;
-        margin-bottom: 30px;
+        margin-bottom: 35px;
         font-weight: 500;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+    }
+    
+    /* Subtítulos de sección (st.subheader / h3) */
+    h3 {
+        color: #38bdf8 !important; /* Celeste brillante */
+        font-size: 1.7rem !important;
+        margin-top: 2.2rem !important;
+        margin-bottom: 1.2rem !important;
+        border-left: 4px solid #a855f7; /* Borde morado destacado */
+        padding-left: 12px !important;
+        line-height: 1.35 !important;
+        text-shadow: 0 0 20px rgba(56, 189, 248, 0.15);
+    }
+    
+    /* Encabezados en tarjetas (h4) */
+    h4 {
+        color: #f8fafc !important;
+        font-size: 1.35rem !important;
+        font-weight: 700 !important;
+        margin-top: 0.8rem !important;
+        margin-bottom: 0.8rem !important;
+    }
+    
+    /* Otros títulos (h5) */
+    h5 {
+        color: #a855f7 !important;
+        font-size: 1.2rem !important;
+        font-weight: 600 !important;
+        margin-top: 1.2rem !important;
+        margin-bottom: 0.8rem !important;
+    }
+    
+    /* Estilos premium para el texto de todo el contenido */
+    p, li, .stMarkdown p, .stMarkdown li {
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
+        font-size: 1.1rem !important;
+        line-height: 1.8 !important;
+        color: #cbd5e1 !important; /* Gris claro (slate-300) muy agradable a la vista */
+        font-weight: 400 !important;
+    }
+    
+    /* Resaltar negritas en todo el texto */
+    strong, b {
+        color: #f1f5f9 !important; /* Blanco brillante (slate-100) */
+        font-weight: 700 !important;
+    }
+    
+    /* Estilos para etiquetas de controles interactivos (ej: preguntas de radio/selectores) */
+    label, .stRadio label, .stSelectbox label, .stTextInput label {
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
+        font-weight: 600 !important;
+        color: #f1f5f9 !important;
+        font-size: 1.1rem !important;
     }
     
     /* Tarjetas Glassmorphism */
@@ -67,6 +137,20 @@ st.markdown("""
     .glass-card:hover {
         transform: translateY(-2px);
         border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    
+    /* Sobrescribir estilos específicos para h3/p dentro de glass-card */
+    .glass-card h3 {
+        color: #c084fc !important;
+        border-left: none !important;
+        padding-left: 0 !important;
+        margin-top: 0 !important;
+        text-shadow: none !important;
+    }
+    
+    .glass-card p {
+        font-size: 1.15rem !important;
+        line-height: 1.7 !important;
     }
     
     /* Bordes de neón para destacar */
@@ -105,9 +189,13 @@ st.markdown("""
     .quote-box {
         font-style: italic;
         color: #38bdf8;
-        border-left: 3px solid #38bdf8;
-        padding-left: 15px;
-        margin: 15px 0;
+        border-left: 4px solid #38bdf8;
+        padding-left: 18px;
+        margin: 20px 0;
+        font-size: 1.15rem;
+        background: rgba(56, 189, 248, 0.05);
+        padding: 12px 18px;
+        border-radius: 0 8px 8px 0;
     }
     </style>
 """, unsafe_allow_html=True)
