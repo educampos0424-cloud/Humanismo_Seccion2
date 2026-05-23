@@ -107,6 +107,20 @@ st.markdown("""
         font-weight: 400 !important;
     }
     
+    /* Color de la letra negro para las opciones del menú desplegable (Selectbox) */
+    div[role="listbox"] li,
+    div[role="listbox"] li *,
+    [data-baseweb="popover"] li,
+    [data-baseweb="popover"] li *,
+    [data-baseweb="menu"] li,
+    [data-baseweb="menu"] li *,
+    ul[role="listbox"] li,
+    ul[role="listbox"] li *,
+    div[role="option"],
+    div[role="option"] * {
+        color: #000000 !important;
+    }
+    
     /* Resaltar negritas en todo el texto */
     strong, b {
         color: #f1f5f9 !important; /* Blanco brillante (slate-100) */
