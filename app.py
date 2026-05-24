@@ -121,6 +121,19 @@ st.markdown("""
         color: #000000 !important;
     }
     
+    /* Estilos premium para el Toast emergente (mensajes de alerta) */
+    [data-testid="stToast"] {
+        background-color: #0f172a !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+        border-radius: 12px !important;
+    }
+    
+    [data-testid="stToast"] * {
+        color: #f1f5f9 !important;
+        font-family: 'Plus Jakarta Sans', sans-serif !important;
+    }
+    
     /* Resaltar negritas en todo el texto */
     strong, b {
         color: #f1f5f9 !important; /* Blanco brillante (slate-100) */
