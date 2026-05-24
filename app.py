@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 import altair as alt
 import os
+import requests
+from streamlit_lottie import st_lottie
 
 # Configuración inicial de la página
 st.set_page_config(
@@ -36,6 +38,11 @@ st.markdown("""
     [data-testid="stSidebar"] {
         background-color: #090d16 !important;
         border-right: 1px solid #1e293b;
+    }
+    /* Additional selectors to enforce background on internal sidebar containers */
+    .css-1d391kg, .css-1d391kg * {
+        background-color: #090d16 !important;
+        color: #f1f5f9 !important;
     }
     
     /* Resaltar títulos y encabezados */
@@ -398,10 +405,17 @@ elif section == "📌 Introducción y Ética":
             )
             
     with col2:
-        st.markdown("##### 🎥 Video Reflexivo: Investigación Acción Participativa")
-        # Video educativo sobre Fals Borda y la IAP (método sentipensante)
-        st.video("https://www.youtube.com/watch?v=68zC3G7jM3I")
-        st.caption("Aportes de Orlando Fals Borda a la investigación en el territorio.")
+        # Lottie animation substituting the video
+        def load_lottieurl(url: str):
+            r = requests.get(url)
+            if r.status_code != 200:
+                return None
+            return r.json()
+        
+        lottie_json = load_lottieurl("https://assets2.lottiefiles.com/packages/lf20_jcikwtux.json")
+        if lottie_json:
+            st_lottie(lottie_json, height=300, key="intro_lottie")
+        st.caption("Animación representando la investigación participativa.")
 
 # ==============================================================================
 # SECCIÓN 3: TESIS Y ARGUMENTOS
@@ -439,17 +453,17 @@ elif section == "✊ Tesis y Argumentos":
             "**La crítica al dogma:** Históricamente, la academia nos ha vendido la idea de que la única ciencia válida "
             "es la que viene en libros del primer mundo, elaborada en laboratorios aislados y bajo métodos eurocéntricos."
         )
+        st.write(
+            "Las creencias, las vivencias y el 'sentido común' de la gente de a pie no constituyen ignorancia; "
+            "representan núcleos de buen sentido y sabiduría popular indispensables para entender la realidad. La verdadera "
+            "ética exige integrar el saber académico con el saber comunitario para desmontar las estructuras hegemónicas de opresión."
+        )
         st.markdown(
             """
             <div class="quote-box">
                 "Todo ser humano es un filósofo en potencia." — Antonio Gramsci
             </div>
             """, unsafe_allow_html=True
-        )
-        st.write(
-            "Las creencias, las vivencias y el 'sentido común' de la gente de a pie no constituyen ignorancia; "
-            "representan núcleos de buen sentido y sabiduría popular indispensables para entender la realidad. La verdadera "
-            "ética exige integrar el saber académico con el saber comunitario para desmontar las estructuras hegemónicas de opresión."
         )
         
         # Elemento sorpresa / curiosidad
