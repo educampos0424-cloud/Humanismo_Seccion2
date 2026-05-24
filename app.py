@@ -269,7 +269,6 @@ if section == "🏠 Inicio":
 </div>
 <div style="margin-top: 50px; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 30px;">
 <p style="font-size: 1.3rem !important; font-weight: 600 !important; color: #f1f5f9 !important; letter-spacing: 0.05em;">UNIVERSIDAD SANTO TOMÁS</p>
-<p style="font-size: 0.95rem !important; color: #64748b !important; margin-top: 5px !important;">Facultad de Humanidades • Decanatura de División de Universidad Abierta y a Distancia</p>
 </div>
 </div>""",
         unsafe_allow_html=True
