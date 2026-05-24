@@ -227,7 +227,7 @@ if 'commitments' not in st.session_state:
 st.sidebar.markdown("<h2 style='text-align: center; color: #a855f7;'>Navigation 🧠</h2>", unsafe_allow_html=True)
 section = st.sidebar.radio(
     "Ir a la sección:",
-    ["🏠 Inicio y Dilema", "📌 Introducción y Ética", "✊ Tesis y Argumentos", "🎮 Simulador de Decisiones", "🏁 Conclusión y Cierre"],
+    ["🏠 Inicio", "💡 El Dilema", "📌 Introducción y Ética", "✊ Tesis y Argumentos", "🎮 Simulador de Decisiones", "🏁 Conclusión y Cierre"],
     index=0
 )
 
@@ -248,9 +248,76 @@ st.markdown('<div class="glow-subtitle">Rompiendo la Burbuja Intelectual • Hum
 st.divider()
 
 # ==============================================================================
-# SECCIÓN 1: INICIO Y DILEMA
+# SECCIÓN DE BIENVENIDA: INICIO
 # ==============================================================================
-if section == "🏠 Inicio y Dilema":
+if section == "🏠 Inicio":
+    st.markdown(
+        """
+        <div class="glass-card" style="text-align: center; padding: 50px 30px; margin-top: 10px; border: 1px solid rgba(255, 255, 255, 0.15);">
+            <div style="font-size: 4rem; margin-bottom: 20px;">🎓</div>
+            <h1 style="
+                font-size: 2.8rem !important; 
+                font-weight: 800 !important; 
+                background: linear-gradient(135deg, #38bdf8 0%, #a855f7 100%);
+                -webkit-background-clip: text !important;
+                -webkit-text-fill-color: transparent !important;
+                margin-bottom: 10px !important;
+                letter-spacing: -0.02em;
+            ">
+                Humanismo, Sociedad y Ética
+            </h1>
+            <h3 style="
+                font-size: 1.5rem !important;
+                color: #94a3b8 !important;
+                font-weight: 500 !important;
+                margin-top: 0 !important;
+                margin-bottom: 40px !important;
+                border-left: none !important;
+                padding-left: 0 !important;
+                text-shadow: none !important;
+            ">
+                Relación entre hombre y sociedad
+            </h3>
+            
+            <div style="
+                display: flex;
+                justify-content: center;
+                gap: 40px;
+                margin: 40px 0;
+                flex-wrap: wrap;
+            ">
+                <div style="text-align: left; background: rgba(255,255,255,0.03); padding: 20px; border-radius: 12px; min-width: 260px; border: 1px solid rgba(255,255,255,0.05);">
+                    <span style="color: #a855f7; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em;">Elaborado por:</span>
+                    <p style="font-size: 1.2rem !important; font-weight: 700 !important; color: #f1f5f9 !important; margin: 5px 0 0 0 !important;">Eduardo Campos Jiménez</p>
+                </div>
+                <div style="text-align: left; background: rgba(255,255,255,0.03); padding: 20px; border-radius: 12px; min-width: 260px; border: 1px solid rgba(255,255,255,0.05);">
+                    <span style="color: #38bdf8; font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em;">Docente:</span>
+                    <p style="font-size: 1.2rem !important; font-weight: 700 !important; color: #f1f5f9 !important; margin: 5px 0 0 0 !important;">Jorge Andrés Angarita Solano</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 50px; border-top: 1px solid rgba(255, 255, 255, 0.08); padding-top: 30px;">
+                <p style="
+                    font-size: 1.3rem !important; 
+                    font-weight: 600 !important; 
+                    color: #f1f5f9 !important;
+                    letter-spacing: 0.05em;
+                ">
+                    UNIVERSIDAD SANTO TOMÁS
+                </p>
+                <p style="font-size: 0.95rem !important; color: #64748b !important; margin-top: 5px !important;">
+                    Facultad de Humanidades • Decanatura de División de Universidad Abierta y a Distancia
+                </p>
+            </div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+# ==============================================================================
+# SECCIÓN 1: EL DILEMA
+# ==============================================================================
+elif section == "💡 El Dilema":
     st.subheader("💡 Para empezar: Un dilema de nuestro tiempo")
     
     col1, col2 = st.columns([1, 1], gap="large")
