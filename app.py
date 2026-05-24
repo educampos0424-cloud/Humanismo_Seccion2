@@ -565,32 +565,10 @@ elif section == "🏁 Conclusión y Cierre":
     
     st.divider()
     
-    # Capturar la opinión del público de forma dinámica
-    st.subheader("💬 Deja aquí tu propio compromiso sentipensante")
-    new_commitment = st.text_input("Escribe tu compromiso como profesional frente a la sociedad:")
     
-    if st.button("Enviar Compromiso 🚀"):
-        if new_commitment.strip() != "":
-            st.session_state.commitments.append(new_commitment)
-            st.toast("¡Tu compromiso ha sido guardado exitosamente!", icon="🌱")
-            st.success("¡Gracias por tu reflexión!")
-        else:
-            st.warning("Escribe algo antes de presionar el botón.")
-            
-    if st.session_state.commitments:
-        st.write("**Compromisos compartidos de la clase (Simulado en sesión):**")
-        for i, c in enumerate(st.session_state.commitments[::-1], 1):
-            st.info(f"Reflexión #{i}: \"{c}\"")
-            
-    st.divider()
     
     # Cierre y referencias
-    st.markdown("<p style='text-align: center; font-style: italic; font-size: 1.2rem; color: #38bdf8;'>\"La ciencia no es neutral, y el científico tampoco debe serlo ante la injusticia.\"</p>", unsafe_allow_html=True)
     
-    with st.expander("📚 Referencias del Material de Estudio"):
-        st.caption("- Zuleta, E. — *Elogio de la dificultad y otros ensayos*")
-        st.caption("- Rincón Díaz, J. A. — *La Investigación Acción Participativa como filosofía de vida del intelectual crítico* (Aportes de Orlando Fals Borda)")
-        st.caption("- Gramsci, A. — *El sentido común y la formación del intelectual*")
 
 # Pie de página general
 st.markdown('<div class="footer">Desarrollado en Streamlit con enfoque humano y crítico • 2026</div>', unsafe_allow_html=True)
