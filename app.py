@@ -217,9 +217,6 @@ st.markdown("""
 # Inicializar estados de la sesión para interactividad persistente
 if 'voted_pill' not in st.session_state:
     st.session_state.voted_pill = None
-if 'votes_pill_data' not in st.session_state:
-    # Votos iniciales simulados
-    st.session_state.votes_pill_data = {'Pastilla (Fácil)': 45, 'Dificultad (Real)': 135}
 if 'commitments' not in st.session_state:
     st.session_state.commitments = []
 
@@ -295,67 +292,65 @@ elif section == "💡 El Dilema":
         )
         
         # Procesar decisión
-        if opcion_pastilla != "Selecciona una opción...":
-            if st.session_state.voted_pill is None:
-                st.session_state.voted_pill = opcion_pastilla
-                if opcion_pastilla == "¡Sí, de una! Deme dos.":
-                    st.session_state.votes_pill_data['Pastilla (Fácil)'] += 1
-                else:
-                    st.session_state.votes_pill_data['Dificultad (Real)'] += 1
-            
-            if opcion_pastilla == "¡Sí, de una! Deme dos.":
-                st.markdown(
-                    """
-                    <div class="glass-card neon-border-red">
-                        <h4>🚨 ¡Caíste en la trampa!</h4>
-                        Al elegir la comodidad absoluta, acabas de elegir lo que el filósofo 
-                        <strong>Estanislao Zuleta</strong> llamaba un <em>'océano de mermelada sagrada'</em>. 
-                        Cuando eliminamos las dificultades y los problemas de la vida, también extinguimos la necesidad 
-                        de pensar, de desear y de construirnos como humanos. Nos volvemos dependientes y sumisos.
-                    </div>
-                    """, 
-                    unsafe_allow_html=True
-                )
-            elif opcion_pastilla == "No, ni riesgos.":
-                st.markdown(
-                    """
-                    <div class="glass-card neon-border-green">
-                        <h4>🌱 ¡Excelente intuición crítica!</h4>
-                        Has elegido el camino de la dificultad y la auto-superación. Como argumentaba 
-                        <strong>Estanislao Zuleta</strong>, el verdadero crecimiento humano y la madurez radican en la 
-                        capacidad de asumir la complejidad, el esfuerzo y la superación de nuestras propias contradicciones. 
-                        Pensar duele, pero nos hace libres.
-                    </div>
-                    """,
-                    unsafe_allow_html=True
-                )
-                
-    with col2:
-        # Gráfico dinámico de las respuestas acumuladas en tiempo real
-        if opcion_pastilla != "Selecciona una opción...":
-            st.markdown("##### 📊 ¿Qué opina el público? (Votos en vivo)")
-            df_votes = pd.DataFrame({
-                'Decisión': list(st.session_state.votes_pill_data.keys()),
-                'Votos': list(st.session_state.votes_pill_data.values())
-            })
-            
-            chart = alt.Chart(df_votes).mark_bar(cornerRadiusTopLeft=8, cornerRadiusTopRight=8).encode(
-                x=alt.X('Decisión:N', axis=alt.Axis(labelAngle=0)),
-                y='Votos:Q',
-                color=alt.Color('Decisión:N', scale=alt.Scale(domain=['Pastilla (Fácil)', 'Dificultad (Real)'], range=['#f43f5e', '#10b981']), legend=None)
-            ).properties(
-                height=220
+        if opcion_pastilla == "¡Sí, de una! Deme dos.":
+            st.markdown(
+                """
+                <div class="glass-card neon-border-red">
+                    <h4 style="color: #f43f5e !important; margin-top: 0;">🚨 ¡Caíste en la trampa!</h4>
+                    Al elegir la comodidad absoluta, acabas de elegir lo que el filósofo 
+                    <strong>Estanislao Zuleta</strong> llamaba un <em>'océano de mermelada sagrada'</em>. 
+                    Cuando eliminamos las dificultades y los problemas de la vida, también extinguimos la necesidad 
+                    de pensar, de desear y de construirnos como humanos. Nos volvemos dependientes y sumisos.
+                </div>
+                """, 
+                unsafe_allow_html=True
             )
-            st.altair_chart(chart, use_container_width=True)
-        else:
-            st.info("👈 Selecciona una respuesta para ver cómo afecta los votos en vivo y revelar la metáfora visual.")
+        elif opcion_pastilla == "No, ni riesgos.":
+            st.markdown(
+                """
+                <div class="glass-card neon-border-green">
+                    <h4 style="color: #10b981 !important; margin-top: 0;">🌱 ¡Excelente intuición crítica!</h4>
+                    Has elegido el camino de la dificultad y la auto-superación. Como argumentaba 
+                    <strong>Estanislao Zuleta</strong>, el verdadero crecimiento humano y la madurez radican en la 
+                    capacidad de asumir la complejidad, el esfuerzo y la superación de nuestras propias contradicciones. 
+                    Pensar duele, pero nos hace libres.
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
             
-    # Mostrar la imagen del océano de mermelada si ya votó
-    if opcion_pastilla != "Selecciona una opción...":
-        st.divider()
-        st.subheader("🎨 Representación Conceptual: El Océano de Mermelada Sagrada")
-        if os.path.exists("mermelada_sagrada.png"):
-            st.image("mermelada_sagrada.png", caption="El Océano de Mermelada Sagrada — La trampa del confort absoluto sin retos ni pensamiento propio.", use_container_width=True)
+    with col2:
+        if opcion_pastilla == "Selecciona una opción...":
+            st.markdown(
+                """
+                <div class="glass-card" style="border: 1px dashed rgba(56, 189, 248, 0.3); background: rgba(56, 189, 248, 0.02); height: 100%;">
+                    <h4 style="color: #38bdf8 !important; margin-top: 0;">🧠 Tu primer desafío crítico</h4>
+                    <p style="font-size: 1.05rem !important; line-height: 1.6 !important;">
+                        Lee la situación planteada a la izquierda y toma una decisión para continuar.
+                    </p>
+                    <p style="font-size: 1.05rem !important; line-height: 1.6 !important; color: #94a3b8 !important;">
+                        Tu elección revelará si te dejas seducir por la comodidad absoluta o si decides asumir la dificultad del pensamiento libre y la auto-superación.
+                    </p>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
+        else:
+            # Mostrar feedback dinámico y animado
+            if opcion_pastilla == "No, ni riesgos.":
+                st.success("🎉 ¡RESPUESTA CORRECTA! Has demostrado criterio humanista y pensamiento crítico.")
+                if st.session_state.voted_pill != opcion_pastilla:
+                    st.session_state.voted_pill = opcion_pastilla
+                    st.balloons()
+            else:
+                st.error("❌ ¡RESPUESTA INCORRECTA! Has preferido el conformismo cómodo al crecimiento humano.")
+                if st.session_state.voted_pill != opcion_pastilla:
+                    st.session_state.voted_pill = opcion_pastilla
+                    st.toast("🚨 ¡Has caído en el Océano de Mermelada!", icon="🚨")
+            
+            st.markdown("##### 🎨 Representación Conceptual: El Océano de Mermelada")
+            if os.path.exists("mermelada_sagrada.png"):
+                st.image("mermelada_sagrada.png", caption="La trampa de la comodidad absoluta.", use_container_width=True)
 
 # ==============================================================================
 # SECCIÓN 2: INTRODUCCIÓN Y ÉTICA
